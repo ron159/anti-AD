@@ -185,7 +185,7 @@ $ARR_WHITE_RULE_LIST = array(
     '@@||tongji.*kuwo.cn^' => 0,
     '@@||tracking.epicgames.com^' => 0,
     '@@||tracker.eu.org^' => 1, //强制加白，BT tracker，有形如2.tracker.eu.org的域
-    '@@||stats.uptimerobot.com^' => 0, //uptimerobot监测相关
+    '@@||stats.uptimerobot.com^' => 1, //uptimerobot监测相关 #38
     '@@||track.sendcloud.org^' => 0, //邮件退订域名
     '@@||log.mmstat.com^' => 0, //修复优酷视频显示禁用了cookie
     '@@||adm.10jqka.com.cn^' => 0, //同花顺
@@ -229,7 +229,322 @@ $ARR_WHITE_RULE_LIST = array(
 
 //针对上游赦免规则anti-AD不予赦免的规则，即赦免名单的黑名单
 $ARR_WHITE_RULE_BLK_LIST = array(
+    '@@||github.com^' => null,
+    '@@||github.io^' => null,
     '@@||ads.nipr.ac.jp^' => null,
+    '@@||10010.com^' => null,
+    '@@||10086.cn^' => null,
+    '@@||17173im.allyes.com^' => null,
+    '@@||199it.com^' => null,
+    '@@||1point3acres.com^' => null,
+    '@@||3dpchip.com^' => null,
+    '@@||4horlover.com^' => null,
+    '@@||51job.com^' => null,
+    '@@||520call.me^' => null,
+    '@@||5278.cool^' => null,
+    '@@||58b.tv^' => null,
+    '@@||5qidgde.com^' => null,
+    '@@||85po.com^' => null,
+    '@@||85porn.net^' => null,
+    '@@||99wbwc.com^' => null,
+    '@@||99ybcc.com^' => null,
+    '@@||9zvip.net^' => null,
+    '@@||abril.com.br^' => null,
+    '@@||ad.10010.com^' => null,
+    '@@||ad.abchina.com^' => null,
+    '@@||ad.alimama.com^' => null,
+    '@@||ad.kazakinfo.com^' => null,
+    '@@||ad.ourgame.com^' => null,
+    '@@||ad2.uoocuniversity.com^' => null,
+    '@@||adf.ly^' => null,
+    '@@||adfox.ru^' => null,
+    '@@||adjs.8591.com.tw^' => null,
+    '@@||admin.mgid.com^' => null,
+    '@@||ads.askgamblers.com^' => null,
+    '@@||ads.com^' => null,
+    '@@||adsense.woso.cn^' => null,
+    '@@||adv.blogupp.com^' => null,
+    '@@||adv.cr^' => null,
+    '@@||adv.gg^' => null,
+    '@@||adv.welaika.com^' => null,
+    '@@||advert.kf5.com^' => null,
+    '@@||aetv.com^' => null,
+    '@@||affyun.com^' => null,
+    '@@||ak77now.pixnet.net^' => null,
+    '@@||analytics.amplitude.com^' => null,
+    '@@||annhe.net^' => null,
+    '@@||anyknew.com^' => null,
+    '@@||api-merchants.skimlinks.com^' => null,
+    '@@||api.ad-gone.com^' => null,
+    '@@||api.ads.tvb.com^' => null,
+    '@@||api.nyda.pro^' => null,
+    '@@||api.recaptcha.net^' => null,
+    '@@||apk.tw^' => null,
+    '@@||app-advertise.zhihuishu.com^' => null,
+    '@@||app.adroll.com^' => null,
+    '@@||archiveteam.org^' => null,
+    '@@||arstechnica.com^' => null,
+    '@@||aternos.org^' => null,
+    '@@||bde4.cc^' => null,
+    '@@||beta.bugly.qq.com^' => null,
+    '@@||bingfeng.tw^' => null,
+    '@@||blackmod.net^' => null,
+    '@@||blog.ztjal.info^' => null,
+    '@@||brighteon.com^' => null,
+    '@@||browser.cloud.ucweb.com^' => null,
+    '@@||btsax.info^' => null,
+    '@@||buyad.bi-xenon.cn^' => null,
+    '@@||captcha.su.baidu.com^' => null,
+    '@@||ccllaa.com^' => null,
+    '@@||centro.co.il^' => null,
+    '@@||changyou.com^' => null,
+    '@@||chinamobile.com^' => null,
+    '@@||chinatelecom.com.cn^' => null,
+    '@@||chuangkit.com^' => null,
+    '@@||cloud.mail.ru^' => null,
+    '@@||club.tgfcer.com^' => null,
+    '@@||cmechina.net^' => null,
+    '@@||cnprint.org^' => null,
+    '@@||cocomanhua.com^' => null,
+    '@@||colatour.com.tw^' => null,
+    '@@||consent-pref.trustarc.com^' => null,
+    '@@||consent.trustarc.com^' => null,
+    '@@||cookielawinfo.com^' => null,
+    '@@||coolinet.com^' => null,
+    '@@||cwtv.com^' => null,
+    '@@||cy.com^' => null,
+    '@@||d1-dm.com^' => null,
+    '@@||dailymail.co.uk^' => null,
+    '@@||dashboard.idealmedia.com^' => null,
+    '@@||dashboard.lentainform.com^' => null,
+    '@@||dashboard.marketgid.com^' => null,
+    '@@||dashboard.mgid.com^' => null,
+    '@@||dashboard.tovarro.com^' => null,
+    '@@||destinationamerica.com^' => null,
+    '@@||digit77.com^' => null,
+    '@@||dilidili.one^' => null,
+    '@@||displayad.naver.com^' => null,
+    '@@||dizhi99.com^' => null,
+    '@@||dlkoo.cc^' => null,
+    '@@||dlkoo.com^' => null,
+    '@@||dmhy.b168.net^' => null,
+    '@@||doubibackup.com^' => null,
+    '@@||download.jumpw.com^' => null,
+    '@@||download.mokeedev.com^' => null,
+    '@@||e9china.net^' => null,
+    '@@||easylife.tw^' => null,
+    '@@||ecitic.com^' => null,
+    '@@||edmondpoon.com^' => null,
+    '@@||elife-cloud.blogspot.com^' => null,
+    '@@||eolinker.com^' => null,
+    '@@||eucookiedirective.com^' => null,
+    '@@||experienceleague.adobe.com^' => null,
+    '@@||experienceleague.corp.adobe.com^' => null,
+    '@@||ez3c.tw^' => null,
+    '@@||fangcloud.com^' => null,
+    '@@||feed.mix.sina.com.cn^' => null,
+    '@@||fharr.com^' => null,
+    '@@||flattr.com^' => null,
+    '@@||fontawesome.com^' => null,
+    '@@||front-go.lemall.com^' => null,
+    '@@||fullmatchesandshows.com^' => null,
+    '@@||game735.com^' => null,
+    '@@||games.pch.com^' => null,
+    '@@||gaus.ee^' => null,
+    '@@||gaybeeg.info^' => null,
+    '@@||gelbooru.com^' => null,
+    '@@||getrelax.cc^' => null,
+    '@@||ggg50.pw^' => null,
+    '@@||golangnote.com^' => null,
+    '@@||gooogle.how^' => null,
+    '@@||hanjubaike.com^' => null,
+    '@@||hanjuwang.com^' => null,
+    '@@||hanjuwang.net^' => null,
+    '@@||healthyadvertising.es^' => null,
+    '@@||hh010.com^' => null,
+    '@@||history.com^' => null,
+    '@@||ibf.tw^' => null,
+    '@@||identity.mparticle.com^' => null,
+    '@@||img.ads.tvb.com^' => null,
+    '@@||informer.com^' => null,
+    '@@||inoreader.com^' => null,
+    '@@||ipfs-lab.com^' => null,
+    '@@||jetzt.de^' => null,
+    '@@||jin10.com^' => null,
+    '@@||jinyongci.com^' => null,
+    '@@||jjkmn.com^' => null,
+    '@@||jlthjy.com^' => null,
+    '@@||joyk.com^' => null,
+    '@@||jsfiddle.net^' => null,
+    '@@||jsjiami.com^' => null,
+    '@@||kissjav.com^' => null,
+    '@@||kk665403.pixnet.net^' => null,
+    '@@||laotiesao.vip^' => null,
+    '@@||ldxinyong.com^' => null,
+    '@@||league-funny.com^' => null,
+    '@@||leagueofmovie.com^' => null,
+    '@@||lemon.baidu.com^' => null,
+    '@@||liumingye.cn^' => null,
+    '@@||lnk2.cc^' => null,
+    '@@||login.mos.ru^' => null,
+    '@@||ltzn.9377.com^' => null,
+    '@@||mcbar.cn^' => null,
+    '@@||mccc11.com^' => null,
+    '@@||mccm88.com^' => null,
+    '@@||media-cache*.pinimg.com^' => null,
+    '@@||megaup.net^' => null,
+    '@@||metrics.torproject.org^' => null,
+    '@@||mi.cn^' => null,
+    '@@||milfzr.com^' => null,
+    '@@||minigame.qq.com^' => null,
+    '@@||mmaa99.xyz^' => null,
+    '@@||mmee04.com^' => null,
+    '@@||mmff30.com^' => null,
+    '@@||mmgd.xyz^' => null,
+    '@@||mmuu22.link^' => null,
+    '@@||mnighthk.net^' => null,
+    '@@||monnsutogatya.com^' => null,
+    '@@||moviesunusa.net^' => null,
+    '@@||ms332.com^' => null,
+    '@@||msn.com^' => null,
+    '@@||msn.wrating.com^' => null,
+    '@@||muzlan.top^' => null,
+    '@@||myqqjd.com^' => null,
+    '@@||namechk.com^' => null,
+    '@@||netflav.com^' => null,
+    '@@||newad.mail.wo.cn^' => null,
+    '@@||niotv.com^' => null,
+    '@@||nobugin.com^' => null,
+    '@@||nodkey.xyz^' => null,
+    '@@||oiihk.com^' => null,
+    '@@||olgame.tw^' => null,
+    '@@||ondemand.sas.com^' => null,
+    '@@||optout.networkadvertising.org^' => null,
+    '@@||panjiachen.github.io^' => null,
+    '@@||pass.1688.com^' => null,
+    '@@||passets-cdn.pinterest.com^' => null,
+    '@@||passiontimes.hk^' => null,
+    '@@||payload.cargocollective.com^' => null,
+    '@@||pg-wuming.com^' => null,
+    '@@||phs.tanx.com^' => null,
+    '@@||pingjs.qq.com^' => null,
+    '@@||pixelexperience.org^' => null,
+    '@@||player.sundaysky.com^' => null,
+    '@@||plugins.matomo.org^' => null,
+    '@@||poedb.tw^' => null,
+    '@@||pornbraze.com^' => null,
+    '@@||premiumleecher.com^' => null,
+    '@@||profile.getyounity.com^' => null,
+    '@@||publisher.adservice.com^' => null,
+    '@@||qqdie.com^' => null,
+    '@@||r3sub.com^' => null,
+    '@@||receive-a-sms.com^' => null,
+    '@@||redditarchive.com^' => null,
+    '@@||restream.io^' => null,
+    '@@||reuters.com^' => null,
+    '@@||rojadirecta.me^' => null,
+    '@@||rule34hentai.net^' => null,
+//    '@@||s-media*.pinimg.com^' => null,
+    '@@||sakai-hk.com^' => null,
+    '@@||sc2casts.com^' => null,
+    '@@||sciencechannel.com^' => null,
+    '@@||scyts.com^' => null,
+    '@@||sdc.pingan.com^' => null,
+    '@@||searchad.naver.com^' => null,
+    '@@||seedingup.com^' => null,
+    '@@||seedingup.de^' => null,
+    '@@||seedingup.es^' => null,
+    '@@||seedingup.fr^' => null,
+    '@@||seedingup.it^' => null,
+    '@@||serve.netsh.org^' => null,
+    '@@||services.pornhub.com^' => null,
+    '@@||seselah.com^' => null,
+    '@@||sexylove.club^' => null,
+    '@@||seyise8.com^' => null,
+    '@@||seyy66.space^' => null,
+    '@@||share1223.com^' => null,
+    '@@||shopback.com.tw^' => null,
+    '@@||slack.com^' => null,
+    '@@||smallseotools.com^' => null,
+    '@@||smtcaw.com^' => null,
+    '@@||social.krunker.io^' => null,
+    '@@||socialmedia.by^' => null,
+    '@@||softwarebrother.com^' => null,
+    '@@||sourcepoint.telegraph.co.uk^' => null,
+    '@@||spanishdict.com^' => null,
+    '@@||speedtest.net^' => null,
+    '@@||spiegel.de^' => null,
+    '@@||sssbozh.com^' => null,
+    '@@||stream4free.live^' => null,
+    '@@||swiso.org^' => null,
+    '@@||switching.software^' => null,
+    '@@||swjoy.com^' => null,
+    '@@||szhr.com.cn^' => null,
+    '@@||szhr.com^' => null,
+    '@@||technews.tw^' => null,
+    '@@||television-envivo.com^' => null,
+    '@@||teliad.com^' => null,
+    '@@||teliad.de^' => null,
+    '@@||teliad.es^' => null,
+    '@@||teliad.fr^' => null,
+    '@@||teliad.it^' => null,
+    '@@||th-sjy.com^' => null,
+    '@@||thefreedictionary.com^' => null,
+    '@@||thimble.mozilla.org^' => null,
+    '@@||thisav.com^' => null,
+    '@@||tiktok.com^' => null,
+    '@@||tlc.com^' => null,
+    '@@||tomshardware.co.uk^' => null,
+    '@@||tomshardware.com^' => null,
+    '@@||transferwise.com^' => null,
+    '@@||trip.cmbchina.com^' => null,
+    '@@||ttkdex.com^' => null,
+    '@@||tuhu.cn^' => null,
+    '@@||tui.click^' => null,
+    '@@||tweaktown.com^' => null,
+    '@@||twofactorauth.org^' => null,
+    '@@||udp2p.com^' => null,
+    '@@||upload.tube8.com^' => null,
+    '@@||uptostream.com^' => null,
+    '@@||upxin.net^' => null,
+    '@@||urlgalleries.net^' => null,
+    '@@||v2rayssr.com^' => null,
+    '@@||vd.l.qq.com^' => null,
+    '@@||viu.tv^' => null,
+    '@@||ware.shop.jd.com^' => null,
+    '@@||wavebox.io^' => null,
+    '@@||web.archive.org^' => null,
+    '@@||websetnet.com^' => null,
+    '@@||weithenn.org^' => null,
+    '@@||wenxuecity.com^' => null,
+    '@@||wgun.net^' => null,
+    '@@||wholehk.com^' => null,
+    '@@||widget.myrentacar.me^' => null,
+    '@@||wikia.nocookie.net^' => null,
+    '@@||wikibooks.org^' => null,
+    '@@||wikidata.org^' => null,
+    '@@||wikinews.org^' => null,
+    '@@||wikipedia.org^' => null,
+    '@@||wikiquote.org^' => null,
+    '@@||wikiversity.org^' => null,
+    '@@||wiktionary.org^' => null,
+    '@@||ws.webcaster.pro^' => null,
+    '@@||www.gsxt.gov.cn^' => null,
+    '@@||xia1ge.com^' => null,
+    '@@||xianzhenyuan.cn^' => null,
+    '@@||xidian.edu.cn^' => null,
+    '@@||xilinjie.com^' => null,
+    '@@||xiuren.org^' => null,
+    '@@||xmpp-chat.pornhub.com^' => null,
+    '@@||xmxing.net^' => null,
+    '@@||yellowbridge.com^' => null,
+    '@@||yesiget.i234.me^' => null,
+    '@@||yibada.com^' => null,
+    '@@||ymso.cc^' => null,
+    '@@||yygsz.com^' => null,
+    '@@||zbj.com^' => null,
+    '@@||zeplin.io^' => null,
+    '@@||zippyshare.com^' => null,
 );
 
 //针对上游通配符规则中anti-AD不予采信的规则，即通配符黑名单
@@ -288,7 +603,7 @@ while(!feof($wild_fp)){
         if(count($arr_regex) > 1){
             $final_regex = $arr_regex[0] . '/';
         }
-        if(preg_match($final_regex, str_replace('*', '',$matches[1]))){
+        if(preg_match($final_regex, str_replace('*', '', $matches[1]))){
             $matched = true;
         }
     }
@@ -301,13 +616,63 @@ fclose($wild_fp);
 
 $arr_wild_src = array_merge($arr_wild_src, $ARR_MERGED_WILD_LIST);
 
-$insert_pos = $written_size = $line_count = 0;
+$written_size = $line_count = 0;
 
 $src_content = file_get_contents($src_file);
 $src_tail_content = '';
 $tmp_replaced_content = '';
 
-// 清洗正在表达式匹配
+//按需写入白名单规则
+$whiterule = file(WHITERULE_SRC, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
+$whiterule = array_fill_keys($whiterule, 0);
+$ARR_WHITE_RULE_LIST = array_merge($whiterule, $ARR_WHITE_RULE_LIST);
+$wrote_whitelist = [];
+$remained_white_rule = [];
+foreach($ARR_WHITE_RULE_LIST as $row => $v){
+    if(empty($row) || substr($row, 0, 1) !== '@' || substr($row, 1, 1) !== '@'){
+        continue;
+    }
+    $matches = array();
+    if(!preg_match('/^@@\|\|([0-9a-z\.\-\*]+?)\^/', $row, $matches)){
+        continue;
+    }
+
+    if(array_key_exists("@@||${matches[1]}^", $ARR_WHITE_RULE_BLK_LIST)){
+        continue;
+    }
+
+    if(array_key_exists($matches[1], $wrote_whitelist)){
+        continue;
+    }
+
+    if($v === 1){
+        $wrote_whitelist[$matches[1]] = null;
+        $src_tail_content .= "@@||${matches[1]}^\n";
+        $line_count++;
+        continue;
+    }
+
+    $origin_white_rule = $matches[1];
+    $wrote_whitelist[$origin_white_rule] = null;
+    $matches[1] = str_replace('*', '.abc.', $matches[1]);
+    $matches[1] = str_replace('..', '.', $matches[1]);
+    $extract_domain = addressMaker::extract_main_domain($matches[1]);
+    if(!$extract_domain){
+        $extract_domain = $matches[1];
+    }
+
+    if(strpos($src_content, $extract_domain) === false){
+        $remained_white_rule[$origin_white_rule] = 1;
+        continue;
+    }
+
+    $src_tail_content .= "@@||${origin_white_rule}^\n";
+    $line_count++;
+}
+
+unset($wrote_whitelist);
+
+// 清洗正则表达式匹配
 foreach($ARR_REGEX_LIST as $regex_str => $regex_row){
     $arr_regex = explode('/$', $regex_str);
     $final_regex = $regex_str;
@@ -318,16 +683,23 @@ foreach($ARR_REGEX_LIST as $regex_str => $regex_row){
     $php_regex = preg_replace('/(.+?[^$])\/$/', '\1.*\^', $php_regex);
     $php_regex .= "\n/m";
 
-//    echo $php_regex, "\n";
     $tmp_replaced_content = preg_replace($php_regex, '', $src_content);
 //    $tmp_replaced_content = str_replace('__DEL'.PHP_EOL, '', $tmp_replaced_content);
-    if($tmp_replaced_content == $src_content){
+    if($tmp_replaced_content === $src_content){
         continue;
     }
     $src_content = $tmp_replaced_content;
     $tmp_replaced_content = '';
     $src_tail_content .= $final_regex . "\n";
     $line_count++;
+
+    foreach($remained_white_rule as $rmk => $rmv){
+        if(preg_match($php_regex, '||' . str_replace('*', '123', $rmk) . "^\n\n")){
+            $src_tail_content .= '@@||' . $rmk . "^\n";
+            $line_count++;
+            unset($remained_white_rule[$rmk]);
+        }
+    }
 }
 
 // 清洗*号模糊匹配
@@ -349,77 +721,25 @@ foreach($arr_wild_src as $wild_rule => $wild_value){
     $tmp_replaced_content = '';
     $src_tail_content .= '||' . $final_regex . "^\n";
     $line_count++;
+
+    foreach($remained_white_rule as $rmk => $rmv){
+        if(preg_match($php_regex, '||' . str_replace('*', '123', $rmk) . "^\n\n")){
+            $src_tail_content .= '@@||' . $rmk . "^\n";
+            $line_count++;
+            unset($remained_white_rule[$rmk]);
+        }
+    }
 }
 
-//按需写入白名单规则
-$whiterule = file(WHITERULE_SRC, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
-$whiterule = array_fill_keys($whiterule, 0);
-$ARR_WHITE_RULE_LIST = array_merge($whiterule, $ARR_WHITE_RULE_LIST);
-foreach($ARR_WHITE_RULE_LIST as $row => $v){
-    if(empty($row) || substr($row, 0, 1) !== '@' || substr($row, 1, 1) !== '@'){
-        continue;
-    }
-    $matches = array();
-    if(!preg_match('/^@@\|\|([0-9a-z\.\-\*]+?)\^/', $row, $matches)){
-        continue;
-    }
+$line_count += substr_count($src_content, "\n");
+$src_content = str_replace('!Total lines: 00000', '!Total lines: ' . $line_count . "\n" . $src_tail_content, $src_content);
 
-    if(array_key_exists("@@||${matches[1]}^", $ARR_WHITE_RULE_BLK_LIST)){
-        continue;
-    }
-    if($v === 1){
-        $wrote_whitelist[$matches[1]] = null;
-        $src_tail_content .= "@@||${matches[1]}^\n";
-        $line_count++;
-        continue;
-    }
-
-    echo $matches[1], "\n";
-
-
-
-//    foreach($wrote_wild as $core_str => $val){
-//        if(substr($core_str, 0, 1) === '/'){
-//            $match_rule = $core_str;
-//            $arr_regex = explode('/$', $match_rule);
-//        }else{
-//            $match_rule = str_replace(array('.', '*'), array('\\.', '.*'), $core_str);
-//            $match_rule = "/^${match_rule}/";
-//        }
-//
-//
-//        $final_regex = $match_rule;
-//        if(count($arr_regex) > 1){
-//            $final_regex = $arr_regex[0] . '/';
-//        }
-//
-//
-//        if(preg_match($final_regex, $matches[1])){
-//            $domain = addressMaker::extract_main_domain($matches[1]);
-//            if(array_key_exists($domain, $black_domain_list) ||
-//                (is_array($black_domain_list[$domain]) && in_array($matches[1], $black_domain_list[$domain]))
-//            ){
-//                continue;
-//            }
-//            if(array_key_exists($matches[1], $wrote_whitelist)){
-//                continue;
-//            }
-//            $wrote_whitelist[$matches[1]] = null;
-//            fwrite($new_fp, "@@||${matches[1]}^\n");
-//            $line_count++;
-//        }
-//    }
-}
-
-
+echo $src_content;
 
 //echo "LINE COUNT:", $line_count, "\t", substr_count($src_content, "\n");
 //echo "\n\n\n\n\n";
 //echo $src_tail_content;
 //echo $src_content;
-
-
-
 
 
 //while(!feof($src_fp)){
