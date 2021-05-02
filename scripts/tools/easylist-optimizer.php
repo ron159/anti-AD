@@ -136,16 +136,16 @@ $ARR_MERGED_WILD_LIST = array(
 );
 
 $ARR_REGEX_LIST = array(
-    '/9377[a-z]{2}\.com$/' => null,
+    '/^(\S+\.)?9377[a-z0-9]{2}\.com$/' => null,
     '/^(\S+\.)?ad(s?[\d]+|m|s)?\./' => null,
 //    '/^(\S+\.)?advert/$dnstype=~CNAME' => null, // TODO dnstype工作不正常，暂时关闭此规则
     '/^(\S+\.)?affiliat(es?[0-9a-z]*?|ion[0-9\-a-z]*?|ly[0-9a-z\-]*?)\./' => null, // fixed #406
     '/^(\S+\.)?s?metrics\./' => null, // TODO 覆盖面很大
-    '/afgr[\d]{1,2}\.com$/' => null,
+    '/^(\S+\.)?afgr[\d]{1,2}\.com$/' => null,
     '/^(\S+\.)?analytics(\-|\.)/' => null,
     '/^(\S+\.)?counter(\-|\.)/' => null,
     '/^(\S+\.)?pixels?\./' => null,
-    '/syma[a-z]\.cn$/' => null,
+    '/^(\S+\.)?syma[a-z]\.cn$/' => null,
     '/^(\S+\.)?widgets?\./' => null,
     '/^(\S+\.)?(webstats?|swebstats?|mywebstats?)\./' => null,
     // '/^(\S+\.)?stat\..+?\.(com|cn|ru|it|de|cz|net|kr|ai|pl|th|fi|fr|jp|hu|bz|sk|se)$/' => null,
@@ -155,9 +155,9 @@ $ARR_REGEX_LIST = array(
     '/^(\S+\.)?adservice\.google\./' => null,
     '/^(\S+\.)?d[\d]+\.sina(img)?(\.com)?\.cn/' => null,
     '/^(\S+\.)?sax[\dns]?\.sina\.com\.cn/' => null,
-    '/delivery([\d]{2}|dom|modo).com$/' => null,
+    '/^(\S+\.)?delivery([\d]{2}|dom|modo).com$/' => null,
     '/^(\S+\.)?[c-s]ads(abs|abz|ans|anz|ats|atz|del|ecs|ecz|ims|imz|ips|ipz|kis|kiz|oks|okz|one|pms|pmz)\.com/' => null,
-    '/^(\S+\.)?([a-z\d\-]+\.)?(?!xn--)[^\.\/]{26,}\.(com|net|cn)(\.cn)?$/' => null, //超长域名
+    '/^(\S+\.)?[0-9a-z\-]{26,}\.(com|net|cn)(\.cn)?$/' => null, //超长域名
     '/^(\S+\.)?11599[\da-z]{2,20}\.com$/' => null, //"澳门新葡京"系列
     '/^(\S+\.)?61677[\da-z]{0,20}\.com$/' => null, //"澳门新葡京"系列
     '/^(\S+\.)?[0-9a-f]{15,}\.com$/' => null, //15个字符以上的16进制域名
@@ -661,7 +661,7 @@ foreach($ARR_WHITE_RULE_LIST as $row => $v){
         $extract_domain = $matches[1];
     }
 
-    if(strpos($src_content, $extract_domain) === false){
+    if(strpos($src_content, '|' . $extract_domain) === false){
         $remained_white_rule[$origin_white_rule] = 1;
         continue;
     }
@@ -736,148 +736,8 @@ $src_content = str_replace('!Total lines: 00000', '!Total lines: ' . $line_count
 
 echo $src_content;
 
-//echo "LINE COUNT:", $line_count, "\t", substr_count($src_content, "\n");
-//echo "\n\n\n\n\n";
-//echo $src_tail_content;
-//echo $src_content;
-
-
-//while(!feof($src_fp)){
-//    $row = fgets($src_fp, 512);
-//    if(empty($row)){
-//        continue;
-//    }
-//
-//    if((substr($row, 0, 1) === '!')){
-//        if(substr($row, 0, 13) === '!Total lines:'){
-//            $insert_pos = $written_size;
-//        }
-//        $written_size += fwrite($new_fp, $row);
-//        continue;
-//    }
-//
-////    if(!preg_match('/^\|.+?/', $row)){
-////        $written_size += fwrite($new_fp, $row);
-////        continue;
-////    }
-//
-//    $matched = false;
-//    foreach($ARR_REGEX_LIST as $regex_str => $regex_row){
-//        $arr_regex = explode('/$', $regex_str);
-//        $final_regex = $regex_str;
-//        if(count($arr_regex) > 1){
-//            $final_regex = $arr_regex[0] . '/';
-//        }
-//        if(preg_match($final_regex, substr(trim($row), 2, -1))){
-//            $matched = true;
-//            if(!array_key_exists($regex_str, $wrote_wild)){
-//                $written_size += fwrite($new_fp, "${regex_str}\n");
-//                $line_count++;
-//                $wrote_wild[$regex_str] = 1;
-//            }
-//            break;
-//        }
-//    }
-//
-//    if($matched){
-//        continue;
-//    }
-//
-//    foreach($arr_wild_src as $core_str => $wild_row){
-//        $arr_wild_sub = explode('$', $core_str);
-//        $match_rule = '';
-//        if(count($arr_wild_sub) > 1){
-//            $match_rule = str_replace(array('.', '*', '-'), array('\\.', '.*', '\\-'), $arr_wild_sub[0]);
-//        }else{
-//            $match_rule = str_replace(array('.', '*', '-'), array('\\.', '.*', '\\-'), $core_str);
-//        }
-//
-//        if(preg_match("/\|(\S+\.)?${match_rule}/", $row)){
-//            if(!array_key_exists($core_str, $wrote_wild)){
-//                if(count($arr_wild_sub) > 1){
-//                    $written_size += fwrite($new_fp, "||${arr_wild_sub[0]}^\$${arr_wild_sub[1]}\n");
-//                }else{
-//                    $written_size += fwrite($new_fp, "||${core_str}^\n");
-//                }
-//
-//                $line_count++;
-//                $wrote_wild[$core_str] = 1;
-//            }
-//            $matched = true;
-//            break;
-//        }
-//    }
-//
-//    if($matched){
-//        continue;
-//    }
-//    $written_size += fwrite($new_fp, $row);
-//    $line_count++;
-//}
-
-//按需写入白名单规则
-//$wrote_whitelist = array();
-//$whiterule = file(WHITERULE_SRC, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
-//$whiterule = array_fill_keys($whiterule, 0);
-//$ARR_WHITE_RULE_LIST = array_merge($whiterule, $ARR_WHITE_RULE_LIST);
-//foreach($ARR_WHITE_RULE_LIST as $row => $v){
-//    if(empty($row) || substr($row, 0, 1) !== '@' || substr($row, 1, 1) !== '@'){
-//        continue;
-//    }
-//    $matches = array();
-//    if(!preg_match('/@@\|\|([0-9a-z\.\-\*]+?)\^/', $row, $matches)){
-//        continue;
-//    }
-//
-//    if(array_key_exists("@@||${matches[1]}^", $ARR_WHITE_RULE_BLK_LIST)){
-//        continue;
-//    }
-//    if($v === 1){
-//        $wrote_whitelist[$matches[1]] = null;
-//        fwrite($new_fp, "@@||${matches[1]}^\n");
-//        $line_count++;
-//        continue;
-//    }
-//
-//    foreach($wrote_wild as $core_str => $val){
-//        if(substr($core_str, 0, 1) === '/'){
-//            $match_rule = $core_str;
-//            $arr_regex = explode('/$', $match_rule);
-//        }else{
-//            $match_rule = str_replace(array('.', '*'), array('\\.', '.*'), $core_str);
-//            $match_rule = "/^${match_rule}/";
-//        }
-//
-//
-//        $final_regex = $match_rule;
-//        if(count($arr_regex) > 1){
-//            $final_regex = $arr_regex[0] . '/';
-//        }
-//
-//
-//        if(preg_match($final_regex, $matches[1])){
-//            $domain = addressMaker::extract_main_domain($matches[1]);
-//            if(array_key_exists($domain, $black_domain_list) ||
-//                (is_array($black_domain_list[$domain]) && in_array($matches[1], $black_domain_list[$domain]))
-//            ){
-//                continue;
-//            }
-//            if(array_key_exists($matches[1], $wrote_whitelist)){
-//                continue;
-//            }
-//            $wrote_whitelist[$matches[1]] = null;
-//            fwrite($new_fp, "@@||${matches[1]}^\n");
-//            $line_count++;
-//        }
-//    }
-//}
-//
-//if(($insert_pos > 0) && (fseek($new_fp, $insert_pos) === 0)){
-//    fwrite($new_fp, "!Total lines: {$line_count}\n");
-//}
-//
 //fclose($src_fp);
 //fclose($new_fp);
 //rename($src_file . '.txt', $src_file);
 //file_put_contents($src_file . '.md5', md5_file($src_file));
-echo 'Time cost:', microtime(true) - START_TIME, "s, at ", date('m-d H:i:s'), "\n";
+//echo 'Time cost:', microtime(true) - START_TIME, "s, at ", date('m-d H:i:s'), "\n";
