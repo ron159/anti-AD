@@ -3,14 +3,14 @@
  * easylist extend
  *
  * @file easylist-optimizer.php
- * @date 2021-05-01
+ * @date 2021-05-01 23:14:30
  * @author gently
  *
  */
 set_time_limit(0);
 
 error_reporting(7);
-
+date_default_timezone_set('Asia/Shanghai');
 define('START_TIME', microtime(true));
 define('ROOT_DIR', dirname(__DIR__) . '/');
 define('LIB_DIR', ROOT_DIR . 'lib/');
@@ -576,11 +576,7 @@ if(!is_file(WILDCARD_SRC) || !is_file(WHITERULE_SRC)){
     die(0);
 }
 
-//$src_fp = fopen($src_file, 'r');
 $wild_fp = fopen(WILDCARD_SRC, 'r');
-//$new_fp = fopen($src_file . '.txt', 'w');
-
-$wrote_wild = array();
 $arr_wild_src = array();
 
 while(!feof($wild_fp)){
@@ -605,6 +601,7 @@ while(!feof($wild_fp)){
         }
         if(preg_match($final_regex, str_replace('*', '', $matches[1]))){
             $matched = true;
+            break;
         }
     }
     if($matched){
@@ -619,7 +616,7 @@ $arr_wild_src = array_merge($arr_wild_src, $ARR_MERGED_WILD_LIST);
 $written_size = $line_count = 0;
 
 $src_content = file_get_contents($src_file);
-$src_tail_content = '';
+$attached_content = '';
 $tmp_replaced_content = '';
 
 //按需写入白名单规则
@@ -647,7 +644,7 @@ foreach($ARR_WHITE_RULE_LIST as $row => $v){
 
     if($v === 1){
         $wrote_whitelist[$matches[1]] = null;
-        $src_tail_content .= "@@||${matches[1]}^\n";
+        $attached_content .= "@@||${matches[1]}^\n";
         $line_count++;
         continue;
     }
@@ -661,12 +658,13 @@ foreach($ARR_WHITE_RULE_LIST as $row => $v){
         $extract_domain = $matches[1];
     }
 
+    // TODO 3级或以上域名加白2级域名的情况未纳入
     if(strpos($src_content, '|' . $extract_domain) === false){
         $remained_white_rule[$origin_white_rule] = 1;
         continue;
     }
 
-    $src_tail_content .= "@@||${origin_white_rule}^\n";
+    $attached_content .= "@@||${origin_white_rule}^\n";
     $line_count++;
 }
 
@@ -684,18 +682,17 @@ foreach($ARR_REGEX_LIST as $regex_str => $regex_row){
     $php_regex .= "\n/m";
 
     $tmp_replaced_content = preg_replace($php_regex, '', $src_content);
-//    $tmp_replaced_content = str_replace('__DEL'.PHP_EOL, '', $tmp_replaced_content);
     if($tmp_replaced_content === $src_content){
         continue;
     }
     $src_content = $tmp_replaced_content;
     $tmp_replaced_content = '';
-    $src_tail_content .= $final_regex . "\n";
+    $attached_content .= $final_regex . "\n";
     $line_count++;
 
     foreach($remained_white_rule as $rmk => $rmv){
         if(preg_match($php_regex, '||' . str_replace('*', '123', $rmk) . "^\n\n")){
-            $src_tail_content .= '@@||' . $rmk . "^\n";
+            $attached_content .= '@@||' . $rmk . "^\n";
             $line_count++;
             unset($remained_white_rule[$rmk]);
         }
@@ -711,20 +708,18 @@ foreach($arr_wild_src as $wild_rule => $wild_value){
     }
 
     $php_regex = '/^\|\|(\S+\.)?' . str_replace(array('.', '*', '-'), array('\\.', '.*', '\\-'), $final_regex) . "\^\n/m";
-//    echo $php_regex, "\n";
     $tmp_replaced_content = preg_replace($php_regex, '', $src_content);
-//    $tmp_replaced_content = str_replace('__DEL'.PHP_EOL, '', $tmp_replaced_content);
     if($tmp_replaced_content == $src_content){
         continue;
     }
     $src_content = $tmp_replaced_content;
     $tmp_replaced_content = '';
-    $src_tail_content .= '||' . $final_regex . "^\n";
+    $attached_content .= '||' . $final_regex . "^\n";
     $line_count++;
 
     foreach($remained_white_rule as $rmk => $rmv){
         if(preg_match($php_regex, '||' . str_replace('*', '123', $rmk) . "^\n\n")){
-            $src_tail_content .= '@@||' . $rmk . "^\n";
+            $attached_content .= '@@||' . $rmk . "^\n";
             $line_count++;
             unset($remained_white_rule[$rmk]);
         }
@@ -732,12 +727,8 @@ foreach($arr_wild_src as $wild_rule => $wild_value){
 }
 
 $line_count += substr_count($src_content, "\n");
-$src_content = str_replace('!Total lines: 00000', '!Total lines: ' . $line_count . "\n" . $src_tail_content, $src_content);
+$src_content = str_replace("!Total lines: 00000\n", '!Total lines: ' . $line_count . "\n" . $attached_content, $src_content);
 
-echo $src_content;
-
-//fclose($src_fp);
-//fclose($new_fp);
-//rename($src_file . '.txt', $src_file);
-//file_put_contents($src_file . '.md5', md5_file($src_file));
-//echo 'Time cost:', microtime(true) - START_TIME, "s, at ", date('m-d H:i:s'), "\n";
+file_put_contents($src_file, $src_content);
+file_put_contents($src_file . '.md5', md5_file($src_file));
+echo 'Time cost:', microtime(true) - START_TIME, "s, at ", date('m-d H:i:s'), "\n";
